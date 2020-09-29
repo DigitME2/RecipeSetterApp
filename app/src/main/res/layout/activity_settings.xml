@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".SettingsActivity">
+
+    <Switch
+        android:id="@+id/lock_task_switch"
+        android:padding="@dimen/form_entry_text_padding"
+        android:text="Lock Task"
+        android:textSize="@dimen/form_entry_inline_text_size"
+        android:fontFamily="@string/form_font_family"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/server_address_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/form_entry_text_padding"
+            android:text="Server Address"
+            android:textSize="@dimen/form_entry_inline_text_size"
+            android:fontFamily="@string/form_font_family"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <EditText
+            android:id="@+id/server_address_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:hint="e.g. http://192.168.0.2"
+            android:imeOptions="actionNext"
+            android:inputType="textUri"
+            android:nextFocusDown="@+id/data_entry_2"
+            android:padding="@dimen/form_entry_text_padding"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textSize="@dimen/form_entry_inline_text_size"
+            android:fontFamily="@string/form_font_family" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/device_ip_address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/form_entry_text_padding"
+            android:text="This Device's IP"
+            android:textSize="@dimen/form_entry_inline_text_size"
+            android:fontFamily="@string/form_font_family"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/device_ip_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/form_entry_text_padding"
+            android:text=""
+            android:textSize="@dimen/form_entry_inline_text_size"
+            android:fontFamily="@string/form_font_family"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/production_line_textview"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="@dimen/form_entry_text_padding"-->
+<!--            android:text="Production Line"-->
+<!--            android:textSize="@dimen/form_entry_inline_text_size"-->
+<!--            android:fontFamily="@string/form_font_family"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/production_line_edittext"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="end"-->
+<!--            android:hint="e.g. 1"-->
+<!--            android:imeOptions="actionNext"-->
+<!--            android:inputType="number|numberDecimal"-->
+<!--            android:digits="0123456789."-->
+<!--            android:nextFocusDown="@+id/data_entry_2"-->
+<!--            android:padding="@dimen/form_entry_text_padding"-->
+<!--            android:selectAllOnFocus="true"-->
+<!--            android:singleLine="true"-->
+<!--            android:textSize="@dimen/form_entry_inline_text_size"-->
+<!--            android:fontFamily="@string/form_font_family" />-->
+
+<!--    </LinearLayout>-->
+
+    <Button
+        android:id="@+id/sync_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sync recipe list with server"
+        android:layout_marginBottom="20px"/>
+
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"/>
+
+</LinearLayout>
+
