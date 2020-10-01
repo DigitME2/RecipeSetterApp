@@ -53,13 +53,18 @@ public class MainActivity extends BaseActivity {
         // Handles the updating of the trays passed/ current recipe
         handler = new Handler();
         startStatusChecker();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Create a dialog to show a list of recipes when pressing the change recipe button
         // Get the list of recipes from the database and convert it to a string array
         List<String> recipeList = dbHelper.getRecipeOptions();
         recipeArray = new String[recipeList.size()];
         recipeList.toArray(recipeArray);
 
-        // Create the dialog to show a list of recipes when changing recipe
+        // Create the dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setItems(recipeArray, new DialogInterface.OnClickListener() {
             @Override
@@ -70,7 +75,7 @@ public class MainActivity extends BaseActivity {
             }});
         alertDialog = builder.create();
 
-        // Show a dialog when the change recipe button is pushed
+        // Set the listener for the change recipe button
         changeRecipeButton = findViewById(R.id.change_recipe_button);
         changeRecipeButton.setOnClickListener(new View.OnClickListener() {
             @Override
