@@ -25,8 +25,6 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_SERVER_ADDRESS = "SERVER_ADDRESS";
 
-    public static final String COLUMN_PROD_LINE_NAME = "LINE_NAME";
-
     public static final String RECIPES_TABLE_NAME = "RECIPES";
     public static final String COLUMN_RECIPE_NAME = "RECIPE_NAME";
 
