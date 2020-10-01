@@ -158,50 +158,6 @@ public class ServerSync {
         }
     }
 
-    /**
-     * Get the up to date options from the server.
-     * Not used anymore, production line is set by IP
-     */
-    public void updateProductionLineOptions() {
-        try {
-            RequestQueue queue = Volley.newRequestQueue(context);
-            String url = serverAddress + "/production_line_options";
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                    url,
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            ArrayList<String> productionLineOptions = parseJsonList(response, "production_line_options");
-                            if (productionLineOptions != null) {
-                                dbHelper.saveProductionLineOptions(productionLineOptions);
-                            }
-                            else {
-                                Log.e(TAG, "Failed to get options from server response");
-                                Toast.makeText(context, "Failed to get options from server response", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // If an error occurs, tell the user and show the
-
-                                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                                    Log.i("ErrorListener", String.valueOf(error));
-                                } else if (error instanceof ServerError){
-                                    Log.i("ErrorListener", String.valueOf(error));
-                                }
-                                Log.i("ErrorListener", String.valueOf(error));
-                                Toast.makeText(context, String.valueOf(error), Toast.LENGTH_LONG).show();
-                            }
-                        });
-            queue.add(jsonObjectRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static ArrayList<String> parseJsonList(JSONObject json, String listName){
         ArrayList<String> parsedList = new ArrayList<>();
         JSONArray jsonArray;
