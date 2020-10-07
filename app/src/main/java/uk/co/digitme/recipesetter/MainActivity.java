@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity {
     public static final int STATUS_REFRESH_INTERVAL_MS = 2000;
 
     public static final String TAG = "MainActivity";
-    public static final String DEFAULT_URL = "192.168.0.100";
+    public static final String DEFAULT_URL = "http://192.168.0.100";
 
     Button changeRecipeButton;
     DbHelper dbHelper;
@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity {
     Handler handler;
     long lastUpdated;
     TextView lastUpdatedText;
+    ActionBar actionBar;
 
     ServerSync.UpdateStatusVolleyCallback statusCallback;
 
@@ -40,9 +41,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-            ab.setTitle("Len Wright Salads");
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Len Wright Salads");
         }
         lastUpdatedText = findViewById(R.id.update_status);
 
@@ -131,10 +132,12 @@ public class MainActivity extends BaseActivity {
                 TextView recipeTextView = findViewById(R.id.current_recipe_text);
                 String recipe;
                 String trays;
+                String line;
                 try {
                     // Get the values from the server json response
                     recipe = response.getString("recipe");
                     trays = response.getString("trays");
+                    line = response.getString("line");
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, "Error parsing JSON values from server response to get_status");
@@ -145,6 +148,9 @@ public class MainActivity extends BaseActivity {
                 // Change the text on the main screen
                 traysTextView.setText(trays);
                 recipeTextView.setText(recipe);
+                if (actionBar != null) {
+                    actionBar.setTitle(line);
+                }
 
                 // Set the last updated timestamp to the current time
                 lastUpdated = (System.currentTimeMillis());
