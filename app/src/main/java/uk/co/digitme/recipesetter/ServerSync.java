@@ -26,11 +26,13 @@ public class ServerSync {
     private Context context;
     DbHelper dbHelper;
     String serverAddress;
+    RequestQueue queue;
 
     public ServerSync(Context context){
         this.context = context;
         this.dbHelper = new DbHelper(context);
         this.serverAddress = dbHelper.getServerAddress();
+        this.queue = Volley.newRequestQueue(context);
     }
 
 
@@ -44,7 +46,6 @@ public class ServerSync {
      */
     public void getStatus(final UpdateStatusVolleyCallback callback){
         try {
-            RequestQueue queue = Volley.newRequestQueue(context);
             String url = serverAddress + "/get_status";
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                     url,
@@ -81,7 +82,6 @@ public class ServerSync {
         }
 
         try {
-            RequestQueue queue = Volley.newRequestQueue(context);
             String url = serverAddress + "/change_recipe";
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
                     url,
@@ -113,7 +113,6 @@ public class ServerSync {
      */
     public void updateRecipeOptions(final Boolean showToast) {
         try {
-            RequestQueue queue = Volley.newRequestQueue(context);
             String url = serverAddress + "/recipe_options";
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                     url,
